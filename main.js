@@ -1,9 +1,9 @@
 let start = new Date();
 
-const wF = require('./functions/writeFile');
 const fs = require('fs');
 var path = require('path');
-
+const cD = require('./functions/concatDate');
+const wF = require('./functions/writeFile');
 let allArgs = process.argv;
 
 if (allArgs[2] === "-action") {
@@ -17,12 +17,17 @@ if (allArgs[2] === "-action") {
             console.log("Available commands :\n-sortByName : Sort all movies by name\n-sortByDate : Sort all movies by release date")
             break;
         case "-transform":
-            if (fs.existsSync(allArgs[4])) {
+            if ((fs.existsSync(allArgs[4])) && (path.extname(allArgs[4]) === '.json')) {
                 let output = allArgs[5];
                 if (path.extname(output) === '.json') {
                     // Code pour concate
                     // Creer un nouveau fichier Json qui sert d'output
-                }else{
+                    let movies = require('./' + allArgs[4]);
+
+                    let temp = cD.concatDate(movies);
+                    wF.writeFile(output, temp);
+
+                } else {
                     console.log("The ouput file hasn't the right extension, try again with a \".json\" file");
                 }
             } else {
@@ -37,5 +42,5 @@ if (allArgs[2] === "-action") {
     console.log('Please try "-action -help" for more commands');
 }
 
-let time = new Date()-start;
-console.log("Execution time : "+time+" ms");
+let time = new Date() - start;
+console.log("Execution time : " + time + " ms");
