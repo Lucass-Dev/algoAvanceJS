@@ -25,7 +25,9 @@ if (allArgs[2] === "-action") {
                 let movies = require('./' + allArgs[4]);
                 let keyword = allArgs[5];
                 let genre = allArgs[6];
-                fK.findFilmByKeyWord(movies, keyword, genre);
+                let film = fK.findFilmByKeyWord(movies, keyword, genre);
+                film = sD.sortByDate(film, 0, film.length);
+                console.log(film[film.length - 1 ].title);
             } else {
                 console.log("File do not exist");
             }
