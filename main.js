@@ -19,6 +19,11 @@ if (allArgs[2] === "-action") {
                 if (path.extname(output) === '.json') {
                     // Code pour concate
                     // Creer un nouveau fichier Json qui sert d'output
+                    let outputFile = JSON.stringify(output);
+                    fs.appendFileSync(output,outputFile);
+                    console.log(output);
+                    console.log(outputFile);
+
                 }else{
                     console.log("The ouput file hasn't the right extension, try again with a \".json\" file");
                 }
