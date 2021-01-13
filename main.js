@@ -7,6 +7,7 @@ const sD = require('./functions/sortByDate');
 const sN = require('./functions/sortByName');
 const fY = require('./functions/findFilmByYear');
 const fK = require('./functions/findByKeyWord');
+const d = require('./functions/download');
 
 let allArgs = process.argv;
 
@@ -27,7 +28,13 @@ if (allArgs[2] === "-action") {
                 let genre = allArgs[6];
                 let film = fK.findFilmByKeyWord(movies, keyword, genre);
                 film = sD.sortByDate(film, 0, film.length);
-                console.log(film[film.length - 1 ].title);
+                if (allArgs[7] == '-save') {
+                    if (!(fs.existsSync(allArgs[8]))) {
+                        fs.mkdir(allArgs[8], callback => { });
+                    }
+                    d.downloadImage(film[film.length - 1].poster, allArgs[8] + '/' + film[film.length - 1].title + '.png');
+                }
+                console.log(film[film.length - 1].title);
             } else {
                 console.log("File do not exist");
             }
@@ -37,9 +44,9 @@ if (allArgs[2] === "-action") {
                 let date = parseInt(allArgs[5]);
                 let movies = require('./' + allArgs[4]);
                 if (allArgs[6] === 'false') {
-                    fY.filterByYearNotSorted(movies, date);
+                    fY.filterByYearNotSorted(movies, date, allArgs[8]);
                 } else {
-                    fY.filterByYearSorted(movies, date, 0, movies.length - 1);
+                    fY.filterByYearSorted(movies, date, allArgs[8], 0, movies.length - 1);
                 }
             } else {
                 console.log("File do not exist");
@@ -76,7 +83,7 @@ if (allArgs[2] === "-action") {
             }
             break;
         case "help":
-            console.log('\x1b[31m',"Available commands :\n" + '\x1b[34m',"sortByName <file.json> <output.json> : " + '\x1b[37m',"Sort all movies by name\n" + '\x1b[34m',"sortByDate <file.json> <output.json> : " + '\x1b[37m',"Sort all movies by release date\n" + '\x1b[34m',"transform <file.json> <output.json> : " + '\x1b[37m',"Concat release date of the movie with the title\n" + '\x1b[34m',"searchDate file.json <date> <true/false> : " + '\x1b[37m',"Find all movies with the entered date\n" + '\x1b[34m',"searchKeyWord <file.json> <keyword> <genre> : ","\x1b[0m");
+            console.log('\x1b[31m', "Available commands :\n" + '\x1b[34m', "sortByName <file.json> <output.json> : " + '\x1b[37m', "Sort all movies by name\n" + '\x1b[34m', "sortByDate <file.json> <output.json> : " + '\x1b[37m', "Sort all movies by release date\n" + '\x1b[34m', "transform <file.json> <output.json> : " + '\x1b[37m', "Concat release date of the movie with the title\n" + '\x1b[34m', "searchDate file.json <date> <true/false> : " + '\x1b[37m', "Find all movies with the entered date\n" + '\x1b[34m', "searchKeyWord <file.json> <keyword> <genre> : ", "\x1b[0m");
             break;
         case "transform":
             if ((fs.existsSync(allArgs[4])) && (path.extname(allArgs[4]) === '.json')) {

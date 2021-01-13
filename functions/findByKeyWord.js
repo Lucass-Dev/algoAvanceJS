@@ -20,7 +20,6 @@ function findFilmByKeyWord(tab, keyWord, genre) {
 */
 
 
-
 function findFilmByKeyWord(tab, keyWord, genre){
     let result = [];
     tab.forEach(element => {
