@@ -1,6 +1,6 @@
 module.exports = { concatDate };
 
-const functions = require('./convertTime')
+const functions = require('./convertTime');
 
 function concatDate(json){
     json.forEach(element => {
