@@ -31,5 +31,5 @@ if (allArgs[2] === "-action") {
     }
 
 } else {
-    console.log('Please try "-action help" for more commands');
+    console.log('Please try "-action -help" for more commands');
 }
