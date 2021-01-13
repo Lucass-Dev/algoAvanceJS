@@ -1,5 +1,8 @@
-const fs = require('fs')
-var path = require('path')
+let start = new Date();
+
+const wF = require('./functions/writeFile');
+const fs = require('fs');
+var path = require('path');
 
 let allArgs = process.argv;
 
@@ -19,11 +22,6 @@ if (allArgs[2] === "-action") {
                 if (path.extname(output) === '.json') {
                     // Code pour concate
                     // Creer un nouveau fichier Json qui sert d'output
-                    let outputFile = JSON.stringify(output);
-                    fs.appendFileSync(output,outputFile);
-                    console.log(output);
-                    console.log(outputFile);
-
                 }else{
                     console.log("The ouput file hasn't the right extension, try again with a \".json\" file");
                 }
@@ -38,3 +36,6 @@ if (allArgs[2] === "-action") {
 } else {
     console.log('Please try "-action -help" for more commands');
 }
+
+let time = new Date()-start;
+console.log("Execution time : "+time+" ms");
