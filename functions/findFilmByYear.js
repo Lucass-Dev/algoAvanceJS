@@ -3,23 +3,32 @@ module.exports = { filterByYearNotSorted, filterByYearSorted };
 const functions = require('./convertTime');
 const d = require('./download');
 const fs = require('fs');
+const request = require('request');
+
+
 /**
  * filter all movies by year and print it, all movies printed gona download image in a directory
  * @param {*} tab the JSON to filter
  * @param {*} year int
  * @param {*} path name of directory to create or to push in it
  */
-function filterByYearNotSorted(tab, year, path) {
+function filterByYearNotSorted(tab, year, save = false, path = undefined) {
     tab.forEach(element => {
         if (functions.convertTime(element.release_date) === year) {
-            if (!(fs.existsSync(path))) {
-                fs.mkdir(path, callback => { });
-            }
-            d.downloadImage(element.poster, path + '/' + element.title.replace(/[^a-zA-Z0-9]/g, '_') + '.png');
             console.log(element.title);
+            console.log(save);
+            if (save && !(directoryName === undefined)) {
+                if (!(fs.existsSync(path))) {
+                    fs.mkdir(path, callback => { });
+                }
+                if (element.poster) {
+                    d.downloadImage(element.poster, path, element.title);
+                }
+            }
         }
     });
 }
+
 
 /**
  * filter all movies by year and print it in console, all movies printed are download in a directory
@@ -29,18 +38,20 @@ function filterByYearNotSorted(tab, year, path) {
  * @param {*} start 0
  * @param {*} end tab.length - 1
  */
-function filterByYearSorted(tab, year, path, start, end) {
+function filterByYearSorted(tab, year, save, path, start, end) {
     middle = Math.ceil((start + end) / 2);
     let convert = functions.convertTime(tab[middle].release_date);
     if (start < end) {
         if (convert === year) {
-            if (!(fs.existsSync(path))) {
-                fs.mkdir(path, callback => { });
+            if (save) {
+                if (!(fs.existsSync(path))) {
+                    fs.mkdir(path, callback => { });
+                }
+                d.downloadImage(tab[middle].poster, path, tab[middle].title);
             }
-            d.downloadImage(tab[middle].poster, path + '/' + tab[middle].title.replace(/[^a-zA-Z0-9]/g, '_') + '.png');
             console.log(tab[middle].title);
         }
-        filterByYearSorted(tab, year, start, middle - 1);
-        filterByYearSorted(tab, year, middle + 1, end);
+        filterByYearSorted(tab, year, path, start, middle - 1);
+        filterByYearSorted(tab, year, path, middle + 1, end);
     }
 }

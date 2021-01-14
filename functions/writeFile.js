@@ -2,7 +2,7 @@ module.exports={writeFile};
 const fs = require('fs');
 
 /**
- * take a filename and JSON to create a file.json and push data in it
+ * take a filename and JSON to create a file.json and push data in
  * @param {*} outputFile string file name
  * @param {*} writtenText take tab in params
  */

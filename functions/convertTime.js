@@ -5,7 +5,6 @@ module.exports = { convertTime };
  * @param {*} time int 
  */
 function convertTime(time){
-    let x = new Date(time * 1000);
-    let year = x.getFullYear()
-    return year;
+    let x = new Date(time * 1000).getFullYear()
+    return x;
 }

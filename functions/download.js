@@ -4,7 +4,6 @@ const fs = require('fs');
 const request = require('request');
 
 
-
 const download = (url, path, callback) => {
     request.head(url, (err, res, body) => {
         request(url).pipe(fs.createWriteStream(path)).on('close', callback);
@@ -16,6 +15,6 @@ const download = (url, path, callback) => {
  * @param {*} url Take url for download images
  * @param {*} path path of the directory and file name with format of image
  */
-function downloadImage(url, path) {
-    download(url, path, () => { })
+function downloadImage(url, path, file) {
+    download(url, path + '/' + file.replace(/[^a-zA-Z0-9]/g, '_') + '.png', () => { })
 }

@@ -29,8 +29,8 @@ function findFilmByKeyWord(tab, keyWord, genre){
     let result = [];
     tab.forEach(element => {
         if (element.genres){
-            element.genres.forEach( ok => {
-                if (ok === genre){
+            element.genres.forEach( travel => {
+                if (travel === genre){
                     if (element.overview.includes(keyWord)){
                         result.push(element);
                     }
