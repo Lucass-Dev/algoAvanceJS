@@ -1,5 +1,9 @@
 module.exports = { sortByName };
 
+/**
+ * take JSON in params and return JSON sorted
+ * @param {*} tab JSON
+ */
 function sortByName(tab){
         for(let i = 0; i < tab.length; i++){
           let min = i; 

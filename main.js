@@ -11,11 +11,6 @@ const d = require('./functions/download');
 
 let allArgs = process.argv;
 
-blue = "\x1b[34m";
-red = "\x1b[31m";
-white = "\x1b[37m";
-
-
 let start = new Date();
 
 if (allArgs[2] === "-action") {

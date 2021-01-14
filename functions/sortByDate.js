@@ -1,5 +1,9 @@
 module.exports = { sortByDate };
 
+/**
+ * take a JSON in params and return json sorted
+ * @param {*} tab JSON 
+ */
 function sortByDate(tab){
     for(let i = 0; i < tab.length; i++){
       let min = i; 

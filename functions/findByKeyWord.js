@@ -19,7 +19,12 @@ function findFilmByKeyWord(tab, keyWord, genre) {
 }
 */
 
-
+/**
+ * travel the JSON and look first in genres if it contain "genre" then search "keyword" in overview and print it in console 
+ * @param {*} tab JSON to travel
+ * @param {*} keyWord string
+ * @param {*} genre string
+ */
 function findFilmByKeyWord(tab, keyWord, genre){
     let result = [];
     tab.forEach(element => {
