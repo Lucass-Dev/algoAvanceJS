@@ -14,6 +14,7 @@ let allArgs = process.argv;
 
 let start = new Date();
 
+
 function allCases(index) {
     switch (allArgs[index + 1]) {
         case "transform":
