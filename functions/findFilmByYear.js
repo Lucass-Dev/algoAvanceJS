@@ -16,8 +16,7 @@ function filterByYearNotSorted(tab, year, save = false, path = undefined) {
     tab.forEach(element => {
         if (functions.convertTime(element.release_date) === year) {
             console.log(element.title);
-            console.log(save);
-            if (save && !(directoryName === undefined)) {
+            if (save && !(path === undefined)) {
                 if (!(fs.existsSync(path))) {
                     fs.mkdir(path, callback => { });
                 }

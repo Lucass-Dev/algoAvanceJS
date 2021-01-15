@@ -62,12 +62,12 @@ function allCases(index) {
             }
             break;
         case "searchDate":
-            if ((fs.existsSync(allArgs[index + 4])) && (path.extname(allArgs[index + 2]) === '.json')) {
+            if ((fs.existsSync(allArgs[index + 2])) && (path.extname(allArgs[index + 2]) === '.json')) {
                 let date = parseInt(allArgs[index + 3]);
                 let movies = require('./' + allArgs[index + 2]);
                 let save = allArgs.includes("-save");
                 let directoryName = allArgs[allArgs.indexOf("-save") + 1];
-                if (allArgs[index + 4] === 'false') {
+                if ((allArgs[index + 4] === 'false') || !(allArgs[index + 4])) {
                     fY.filterByYearNotSorted(movies, date, save, directoryName);
                 } else {
                     fY.filterByYearSorted(movies, date, save, directoryName, 0, movies.length - 1);

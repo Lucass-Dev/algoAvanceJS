@@ -18,3 +18,5 @@ node ./main.js -action searchKeyWord movies.json low Action
 - Story 7 : 
 node ./main.js -save coucou -action searchKeyWord movies.json low Action
 node ./main.js -action searchKeyWord movies.json low Action -save Action
+
+node ./main.js -save coucou -action searchDate movies.json 2021

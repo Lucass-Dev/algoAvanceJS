@@ -16,5 +16,5 @@ const download = (url, path, callback) => {
  * @param {*} path path of the directory and file name with format of image
  */
 function downloadImage(url, path, file) {
-    download(url, path + '/' + file.replace(/[^a-zA-Z0-9]/g, '_') + '.png', () => { })
+    download(url, path + '/' + file.replace(/[\/:*?"<>| ]/g, '_') + '.png', () => { })
 }
