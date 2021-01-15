@@ -10,13 +10,13 @@ node ./main.js -action sortByName movies.json moviesSortedByName.json
 
 - Story 5 :
 node ./main.js -action searchDate movies.json 2021 false
-node ./main.js -action searchDate moviesSortedByDate 2021 true
+node ./main.js -action searchDate moviesSortedByDate.json 2021 true ///
 
 - Story 6 :
 node ./main.js -action searchKeyWord movies.json low Action
 
 - Story 7 : 
-node ./main.js -save coucou -action searchKeyWord movies.json low Action
-node ./main.js -action searchKeyWord movies.json low Action -save Action
+node ./main.js -save TEST -action searchKeyWord movies.json low Action
+node ./main.js -action searchKeyWord movies.json low Action -save test
 
 node ./main.js -save coucou -action searchDate movies.json 2021

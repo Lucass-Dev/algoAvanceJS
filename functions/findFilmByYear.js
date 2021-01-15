@@ -50,7 +50,8 @@ function filterByYearSorted(tab, year, save, path, start, end) {
             }
             console.log(tab[middle].title);
         }
-        filterByYearSorted(tab, year, path, start, middle - 1);
         filterByYearSorted(tab, year, path, middle + 1, end);
+        filterByYearSorted(tab, year, path, start, middle - 1);
+        
     }
 }

@@ -22,7 +22,7 @@ function allCases(index) {
                 let output = allArgs[index + 3];
                 if (path.extname(output) === '.json') {
                     // Creer un nouveau fichier Json qui sert d'output
-                    let movies = require('./' + allArgs[4]);
+                    let movies = require('./' + allArgs[index + 2]);
                     let temp = cD.concatDate(movies);
                     wF.writeFile(output, temp);
                 } else {
@@ -107,11 +107,11 @@ function allCases(index) {
 }
 
 let index = allArgs.indexOf("-action");
-if (allArgs.indexOf("-action")) {
+if (allArgs[2] === "-action") {
     console.log("NORMAL");
     allCases(index);
 }
-else if (allArgs.indexOf("-save")) {
+else if (allArgs[2] === "-save") {
     console.log("SAVE");
     allCases(index);
 }
