@@ -42,7 +42,7 @@ function filterByYearSorted(tab, year, save, path, start, end) {
     let convert = functions.convertTime(tab[middle].release_date);
     if (start < end) {
         if (convert === year) {
-            if (save) {
+            if (save && !(path === undefined)) {
                 if (!(fs.existsSync(path))) {
                     fs.mkdir(path, callback => { });
                 }
@@ -50,8 +50,8 @@ function filterByYearSorted(tab, year, save, path, start, end) {
             }
             console.log(tab[middle].title);
         }
-        filterByYearSorted(tab, year, path, middle + 1, end);
-        filterByYearSorted(tab, year, path, start, middle - 1);
+        filterByYearSorted(tab, year, save, path, start, middle - 1);
+        filterByYearSorted(tab, year, save, path, middle + 1, end);
         
     }
 }

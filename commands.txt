@@ -20,3 +20,10 @@ node ./main.js -save TEST -action searchKeyWord movies.json low Action
 node ./main.js -action searchKeyWord movies.json low Action -save test
 
 node ./main.js -save coucou -action searchDate movies.json 2021
+node ./main.js -action searchDate movies.json 2021 -save coucou
+
+node ./main.js -save coucou -action searchDate movies.json 2021 false
+node ./main.js -action searchDate movies.json 2021 false -save coucou
+
+node ./main.js -save trufu2 -action searchDate moviesSortedByDate.json 2021 true
+node ./main.js -action searchDate moviesSortedByDate.json 2021 true -save trufu
